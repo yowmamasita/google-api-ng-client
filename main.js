@@ -20,13 +20,13 @@ function getDiscoveryUrl (name, version) {
     '/' + version + '/rest';
 }
 
-function loadApi (name, version, options, cb) {
+function loadApi (name, version, discoveryUrl, options, cb) {
   var google = new googleapis.GoogleApis();
   if (typeof options === 'function') {
     cb = options;
     options = {};
   }
-  return google.discoverAPI(getDiscoveryUrl(name, version), options, cb);
+  return google.discoverAPI(discoveryUrl ? discoveryUrl : getDiscoveryUrl(name, version), options, cb);
 }
 
 exports.getDiscoveryUrl = getDiscoveryUrl;
